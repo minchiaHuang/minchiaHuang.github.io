@@ -7,6 +7,7 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
 <link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
 <div class="wrap sub prose">
@@ -14,11 +15,13 @@
   <p>
     That page doesn't exist — or it did once and I moved it.
   </p>
-  <nav class="links">
-    <a href="/">Home</a>
-    <a href="https://github.com/minchiaHuang">GitHub</a>
-    <a href="mailto:minchia.huang.dev@gmail.com">Email</a>
+  <nav class="keys">
+    <a class="keycap" href="/"><span class="k">H</span><span>Home</span></a>
+    <a class="keycap" href="https://github.com/minchiaHuang"><span class="k">G</span><span>GitHub</span></a>
+    <a class="keycap" href="mailto:minchia.huang.dev@gmail.com"><span class="k">E</span><span>Email</span></a>
+    <button class="keycap" type="button"><span class="k">I</span><span>Invert</span></button>
   </nav>
 </div>
+<script src="app.js"></script>
 </body>
 </html>
