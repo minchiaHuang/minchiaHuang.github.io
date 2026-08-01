@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Eyes — Tommy Huang</title>
+<meta name="description" content="A visionOS app that asks who you want to become, then builds a walkable museum of that future — mostly its cost, not its glory. Apple Foundation Program.">
+<link rel="canonical" href="https://minchiahuang.github.io/visual-eyes.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visual Eyes — a museum of the future you say you want">
+<meta property="og:description" content="A visionOS app that asks who you want to become, then shows that future honestly — mostly its cost. Apple Foundation Program.">
+<meta property="og:image" content="https://minchiahuang.github.io/assets/ve-gallery.jpg">
+<meta property="og:url" content="https://minchiahuang.github.io/visual-eyes.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap sub prose">
+
+  <a class="back" href="./">← Back</a>
+
+  <h1>Visual Eyes</h1>
+  <p class="award">Apple Foundation Program · 2026</p>
+  <p class="role">visionOS · four-person team · I built the app</p>
+
+  <figure>
+    <video controls preload="none" poster="assets/visual-eyes-poster.jpg">
+      <source src="assets/visual-eyes-demo.mp4" type="video/mp4">
+      Your browser doesn't support embedded video.
+      <a href="assets/visual-eyes-demo.mp4">Download the demo instead.</a>
+    </video>
+    <figcaption>The 60-second demo — questions in, a walkable museum out.</figcaption>
+  </figure>
+
+  <h2>The reframe</h2>
+  <p>
+    Every wellness app we looked at asks the same question — <em>how do you feel today?</em> — and
+    offers the same answer: an escape. A quiet beach. Rain on a window. Somewhere else.
+  </p>
+  <p class="pull">
+    Visual Eyes asks who you want to <em>become</em>, and does the opposite of escaping. It builds a
+    short documentary of that life and makes you walk through it.
+  </p>
+  <p>
+    The thesis we settled on: balance is not a beach you escape to. It is the steadiness of having
+    seen the full cost of a path and still choosing it — or clearly choosing not to. You cannot align
+    yourself with a future you have never honestly looked at.
+  </p>
+  <p>
+    That is why four of the five rooms are the quiet cost of the path and only one is its summit.
+    We took the tone from the <em>7 Up</em> documentaries: plain, unsentimental, second person.
+    Not a vision board.
+  </p>
+
+  <h2>What it does</h2>
+  <div class="shots wide">
+    <img src="assets/ve-question.jpg" alt="The questionnaire — what's your ideal future like?">
+    <img src="assets/ve-room-night.jpg" alt="A generated museum room shown on the wall">
+    <img src="assets/ve-room-desk.jpg" alt="Another room of the generated museum">
+    <img src="assets/ve-gallery.jpg" alt="The walkable gallery with five generated images on the walls">
+    <img src="assets/ve-closing.jpg" alt="The closing question — which part of this world genuinely felt like you?">
+  </div>
+  <p>
+    You answer a few questions about an aspiration. An AI curator writes a five-beat story of that
+    life and paints an image for each beat. You then step into a pre-downloaded 3D museum and walk
+    past your own five images while a documentary voice narrates them. At the exit it asks one
+    question and hands the decision back to you: <em>which part of this world genuinely felt like
+    you?</em>
+  </p>
+
+  <h2>How it's built</h2>
+  <p>
+    The pipeline is two stages, and the split matters. Stage A sends the answers to the model with a
+    <strong>strict JSON schema</strong>, so the story comes back as five typed nodes — beat,
+    narration, image prompt, tone — rather than prose I would have to parse. Stage B takes those
+    five image prompts and generates the images <strong>in parallel</strong>, because five sequential
+    round trips is the difference between a demo that holds attention and one that doesn't.
+  </p>
+  <p>
+    The finished images get composited onto named wall frames in a USDZ gallery, so the museum
+    geometry ships with the app and only the pictures on the walls are generated. Narration runs
+    through a speech-to-text → model → text-to-speech loop, which means you can talk back to the
+    curator while you're standing in the room.
+  </p>
+  <p>
+    <strong>There is no database.</strong> A visit lives in memory for a single session and then it
+    is gone. That was a decision, not an omission — the experience is one walk through one possible
+    future, and keeping a library of your past futures would have quietly turned it into a different
+    product.
+  </p>
+  <div class="stack">
+    <span>Swift</span><span>SwiftUI</span><span>RealityKit</span><span>visionOS</span>
+    <span>OpenAI Responses API</span><span>USDZ</span>
+  </div>
+
+  <h2>What I worked on</h2>
+  <p>
+    <strong>I built the app</strong> — the SwiftUI flow, the generation pipeline and its typed
+    schema, the RealityKit world builder that places generated images onto the gallery walls, and
+    the voice loop. It was a four-person Apple Foundation Program team; the concept, visual direction
+    and the demo film were shared.
+  </p>
+  <p>
+    The decision I'd defend: shipping an iPad and iPhone first-person walkthrough of the same museum
+    alongside the Vision Pro build. It exists so the pipeline can be validated without a headset —
+    and on a project where the target device is the scarce resource, a path that doesn't need one is
+    worth the extra surface it costs you.
+  </p>
+
+  <h2>What broke</h2>
+  <p>
+    Generated 3D was the part I could not make behave. Images came back upside down, or with
+    proportions that were subtly wrong once they were hanging on a wall, and each generation took
+    long enough that a single bad one cost real time. Placing them was manual — I checked each
+    image against its wall frame one at a time.
+  </p>
+  <p>
+    The architecture on this page is what that failure left behind. We set out to generate the
+    world you walk through. We shipped a museum that was modelled and downloaded in advance, with
+    only the pictures on its walls generated. That was a retreat, and it was the right one: it
+    moved the unreliable part into the one place where a bad result is survivable.
+  </p>
+  <p>
+    The demo failed anyway. On showcase day the API key would not connect and the app did not run
+    in front of the room.
+  </p>
+
+  <h2>What I'd do differently</h2>
+  <p>
+    <strong>I was the only person on the team who could tell what was buildable, and I treated that
+    as knowledge rather than as a job.</strong> We were four weeks into an Apple Foundation Program
+    cohort that was mostly designers, and the concept kept growing: look around from one spot, then
+    walk around — 3DoF to 6DoF — then generate the world you walk around in. I could see the last
+    step was not going to happen. The direction was not settled until the Monday of the final week,
+    and I spent the five days after that mostly not sleeping.
+  </p>
+  <p>
+    Saying "that isn't feasible" is not the same as making it land. What I owed that team was a
+    smaller, concrete alternative early enough to choose it calmly — not a correct opinion delivered
+    too late to act on.
+  </p>
+  <p>
+    The second thing is worse, because it was a choice. I believed I would be fastest working alone,
+    so I only offered to teach the people who already looked like they wanted to learn, and I ended
+    up building the whole app myself. That is not a team, it is one person with an audience. I still
+    think I was faster. I no longer think that was the thing to optimise.
+  </p>
+
+  <h2>Where it stands</h2>
+  <p>
+    Still a prototype, and further from a finished product than the screenshots suggest. The
+    generation pipeline, the walkable gallery and the narration work end to end. What we never got
+    to was the thing the project was actually for: helping someone see a future clearly enough to
+    choose it or let it go. We built the museum. I don't think we ever proved it does that.
+  </p>
+
+  <footer>
+    <a href="https://github.com/minchiaHuang/Vision-Pro">Source on GitHub</a> ·
+    <a href="mailto:minchia.huang.dev@gmail.com">minchia.huang.dev@gmail.com</a>
+  </footer>
+
+</div>
+</body>
+</html>

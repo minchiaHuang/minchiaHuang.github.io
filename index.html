@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tommy Huang</title>
+<meta name="description" content="Software engineering student in Sydney. I build iOS and full-stack products — most recently a hands-free cooking assistant for Ray-Ban Meta glasses.">
+<link rel="canonical" href="https://minchiahuang.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tommy Huang — iOS and full-stack, built in Sydney">
+<meta property="og:description" content="Master of IT at UTS. 1st place at the ICON x Lyra Hackathon for an iOS app built on Ray-Ban Meta glasses.">
+<meta property="og:image" content="https://minchiahuang.github.io/assets/og.jpg">
+<meta property="og:url" content="https://minchiahuang.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Tommy Huang</h1>
+    <div class="intro">
+      <p>
+        I came to software from film. I studied screen production at Griffith, and I am now
+        finishing a Master of IT at UTS in Sydney.
+      </p>
+      <p>
+        The film training turned out to be useful in a way I did not expect: most of my projects
+        live or die on whether a stranger understands them in ninety seconds. I build mostly iOS
+        and full-stack, and I do my best work under a deadline with other people in the room.
+      </p>
+    </div>
+
+    <nav class="links">
+      <a href="https://github.com/minchiaHuang">GitHub</a>
+      <a href="https://www.linkedin.com/in/min-chia-huang-698a6b184/">LinkedIn</a>
+      <a href="mailto:minchia.huang.dev@gmail.com">Email</a>
+      <a href="TommyHuang_Resume.pdf">Résumé (PDF)</a>
+    </nav>
+  </header>
+
+  <h2>What I'm proudest of</h2>
+
+  <section class="featured">
+    <h3>CookPilot</h3>
+    <p class="award">1st place · ICON x Lyra Hackathon, July 2026</p>
+
+    <div class="shots phones">
+      <img src="assets/cookpilot-home.png" alt="CookPilot home screen — take or upload a fridge photo">
+      <img src="assets/cookpilot-ingredients.png" alt="Ingredients identified from the fridge photo">
+      <img src="assets/cookpilot-recipes.png" alt="Recipes ranked by what you already have">
+      <img src="assets/cookpilot-cooking.png" alt="Hands-free step-by-step cooking view">
+      <img src="assets/cookpilot-basket.png" alt="Missing ingredients as a shopping basket">
+      <img src="assets/cookpilot-chat.png" alt="Chat a recipe into existence from a craving">
+    </div>
+
+    <p>
+      An iOS app for Ray-Ban Meta glasses. Look at your fridge, and it tells you what you can
+      actually cook tonight — filtered against allergies you set once, then read into your ear
+      step by step so you never touch the phone with wet hands.
+    </p>
+    <p>
+      Partway through, we found that <strong>every layer of this idea already shipped somewhere</strong>
+      — eight apps do fridge-photo-to-recipe, and Meta's own assistant reads recipe steps aloud.
+      Deciding what was still defensible mattered more than anything we built.
+    </p>
+
+    <div class="stack">
+      <span>Swift</span><span>SwiftUI</span><span>Meta Wearables DAT</span>
+      <span>OpenAI</span><span>SFSpeechRecognizer</span>
+    </div>
+
+    <a class="go" href="cookpilot.html">Read how we got there →</a>
+  </section>
+
+  <h2>And this one</h2>
+
+  <section class="featured">
+    <h3>Visual Eyes</h3>
+    <p class="award">Apple Foundation Program · 2026</p>
+
+    <figure>
+      <img src="assets/ve-gallery.jpg" alt="The walkable 3D gallery with five AI-generated images hung on its walls">
+      <figcaption>Five generated images, hung in a museum you walk through.</figcaption>
+    </figure>
+
+    <p>
+      Wellness apps ask how you feel and offer you a beach. This one asks who you want to
+      <em>become</em>, then builds a five-room museum of that future — four rooms of its quiet cost,
+      one of its summit — and makes you walk through it while a documentary voice narrates.
+    </p>
+    <p>
+      At the exit it asks one question and gives the decision back to you:
+      <strong>which part of this world genuinely felt like you?</strong>
+    </p>
+
+    <div class="stack">
+      <span>SwiftUI</span><span>RealityKit</span><span>visionOS</span>
+      <span>OpenAI Responses API</span><span>USDZ</span>
+    </div>
+
+    <a class="go" href="visual-eyes.html">Read the case study →</a>
+  </section>
+
+  <h2>Other things I've built</h2>
+
+  <div class="item">
+    <h3>LearnGuard</h3><span class="where">OpenAI Codex Hackathon</span>
+    <p>
+      An MCP gate that makes a coding assistant earn its permissions: no proof of understanding
+      from the learner, no workspace actions. The red-team suite blocks 8 of 8 attacks while
+      letting both legitimate actions through.
+    </p>
+    <div class="stack">
+      <span>Swift</span><span>SwiftUI</span><span>Python</span><span>MCP</span>
+    </div>
+    <a class="go" href="https://github.com/minchiaHuang/LearnGuard">GitHub →</a>
+  </div>
+
+  <div class="item">
+    <h3>VaxAgent</h3><span class="where">HSIL Hackathon · Harvard T.H. Chan</span>
+    <p>
+      A research copilot for veterinary oncology: tumour mutation data in, ranked neoantigen
+      candidates out, with every step traceable back to the file it came from. A FastAPI backend
+      does the VCF parsing, binding and immunogenicity filtering, and ranking, and streams progress
+      to the browser as it goes.
+    </p>
+    <div class="stack">
+      <span>Python</span><span>FastAPI</span><span>SQLite</span><span>Playwright</span>
+    </div>
+    <a class="go" href="https://github.com/minchiaHuang/VaxAgent">GitHub →</a>
+  </div>
+
+  <h2>Away from the keyboard</h2>
+  <div class="aside">
+    <p>
+      I climb, swim, run, and get out of the city most weekends. Last winter I cycled from Seoul to
+      Busan — seven hours a day, several days running — which is the closest thing I have found to
+      a hackathon that lasts a week.
+    </p>
+    <p>
+      I am learning to write and think in English rather than translating into it. This site is
+      part of that.
+    </p>
+  </div>
+
+  <footer>
+    I'm looking for a software engineering internship or graduate role in Sydney.
+    The fastest way to reach me is
+    <a href="mailto:minchia.huang.dev@gmail.com">minchia.huang.dev@gmail.com</a>.
+  </footer>
+
+</div>
+</body>
+</html>

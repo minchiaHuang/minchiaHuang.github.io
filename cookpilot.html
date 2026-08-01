@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CookPilot — Tommy Huang</title>
+<meta name="description" content="How a fridge-photo cooking assistant for Ray-Ban Meta glasses won the ICON x Lyra Hackathon, after we found out every layer of the idea already existed.">
+<link rel="canonical" href="https://minchiahuang.github.io/cookpilot.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CookPilot — how we won after finding out the idea already existed">
+<meta property="og:description" content="Eight apps already turned a fridge photo into recipes. Deciding what was still defensible mattered more than anything we built.">
+<meta property="og:image" content="https://minchiahuang.github.io/assets/og.jpg">
+<meta property="og:url" content="https://minchiahuang.github.io/cookpilot.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap sub prose">
+
+  <a class="back" href="./">← Back</a>
+
+  <h1>CookPilot</h1>
+  <p class="award">1st place · ICON x Lyra Hackathon, July 2026</p>
+  <p class="role">iOS · Ray-Ban Meta glasses · team project</p>
+
+  <div class="shots phones">
+    <img src="assets/cookpilot-home.png" alt="Home screen — take or upload a fridge photo">
+    <img src="assets/cookpilot-ingredients.png" alt="Ingredients identified from the photo">
+    <img src="assets/cookpilot-recipes.png" alt="Recipes ranked by what you already have">
+    <img src="assets/cookpilot-cooking.png" alt="Hands-free step-by-step cooking">
+    <img src="assets/cookpilot-basket.png" alt="Missing ingredients as a shopping basket">
+    <img src="assets/cookpilot-chat.png" alt="Chat a recipe into existence">
+  </div>
+
+  <h2>The problem we started with</h2>
+  <p>
+    A recipe says thirty minutes and takes an hour. The gap is not the cooking. It is the ten to
+    fifteen minutes spent deciding what to make, which no recipe ever counts; the rummaging to find
+    out what you are missing; and washing and drying your hands every time you need the next step.
+  </p>
+
+  <table>
+    <tr><th>Stage</th><th>Before</th><th>After</th></tr>
+    <tr><td>Deciding what to make</td><td>10–15 min of scrolling</td><td>~1 min — photo in, options out</td></tr>
+    <tr><td>Working out what's missing</td><td>~10 min of rummaging</td><td>automatic — the gap becomes a basket</td></tr>
+    <tr><td>Getting the next step</td><td>wash, dry, unlock, scroll</td><td>say "next"</td></tr>
+  </table>
+
+  <p>
+    That table is our own reasoned before-and-after, not a controlled measurement, and we said so in
+    the pitch. The one number the app computes exactly is different: for each recipe it schedules
+    steps that can overlap passive waiting and reports the difference against cooking them back to
+    back — "6 min saved by overlapping the waiting" is a real subtraction, not an estimate.
+  </p>
+
+  <h2>The uncomfortable finding</h2>
+  <p>
+    Partway through, we went looking for prior art and found that <strong>every layer of this idea
+    already shipped somewhere.</strong>
+  </p>
+  <ul>
+    <li>At least eight iOS apps already turn a fridge photo into recipes.</li>
+    <li>Half a dozen apps already do hands-free voice cooking.</li>
+    <li>Meta markets this exact use case for these glasses, and "Hey Meta" natively handles recipe
+        steps and substitutions.</li>
+    <li>An app called Sous existed for Ray-Ban Display with nearly our pitch, verbatim.</li>
+  </ul>
+  <p>
+    The judges were Lyra engineers. We had to assume at least one of them knew that Meta AI does
+    cooking natively — which meant demoing "ask the glasses for a step" would invite exactly the
+    wrong question.
+  </p>
+
+  <h2>What we decided was still defensible</h2>
+  <p class="pull">
+    "Hey Meta" does not know what is in your fridge, and does not remember that you don't eat beef.
+    It has no persistent profile. That is the one thing a general assistant structurally cannot do.
+  </p>
+  <p>
+    So we stopped treating the diet profile as a settings screen and made it the product. The demo
+    moment we built the pitch around was not the fridge photo — it was setting a restriction and
+    watching the recipe list visibly change in front of the judge.
+  </p>
+  <p>
+    We also set aside a technically stronger angle: the glasses' beamforming microphone sits at your
+    mouth, so it survives a noisy kitchen in a way a phone across the room does not. It was
+    demonstrable live and it was real. We left it out because it was an engineer's argument in a
+    competition where 40% of the score was whether the judge believed <em>you personally</em> had
+    this problem.
+  </p>
+
+  <h2>How it works</h2>
+  <p>
+    The glasses are a peripheral, not a client — no app runs on them. The camera streams over
+    Meta's DAT SDK, all the logic lives on the phone, and audio goes back out over Bluetooth.
+    Voice commands are recognised on-device, so "next" does not wait on a network round trip.
+  </p>
+  <p>
+    We started on Gemini and moved to OpenAI for latency, then worked down the model sizes to
+    <code>gpt-4.1-nano</code>. Reading a fridge photo into a list of ingredients is not a hard
+    reasoning task, and on a step where you are standing there with your hands full, the smallest
+    model that clears the bar is the right one.
+  </p>
+  <div class="stack">
+    <span>Swift</span><span>SwiftUI</span><span>Meta Wearables DAT</span>
+    <span>OpenAI gpt-4.1-nano</span><span>OpenAI tts-1</span><span>SFSpeechRecognizer</span>
+  </div>
+
+  <h2>What I worked on</h2>
+  <p>
+    <strong>I built the iOS application, front to back</strong> — the SwiftUI screens, the step state
+    machine and timers underneath them, the recipe and diet-profile logic, and the service layer
+    talking to the model. One teammate designed the interface; another worked on the AI side running
+    against the glasses.
+  </p>
+  <p>
+    The decision I would defend in an interview is putting step control on
+    <code>SFSpeechRecognizer</code> on-device rather than sending audio away and waiting. "Next" has
+    to land the instant you say it, standing over a hot pan — a network round trip you can feel is
+    worse than no voice control at all. The open-ended "Hey Chef" questions do go out to Whisper,
+    because there the extra second buys a much better answer. Two different problems, two different
+    answers, in the same app.
+  </p>
+
+  <h2>What broke</h2>
+  <p>
+    The command set is fixed — "next", "back", "repeat" — but accents are not, and the recogniser
+    kept returning transcriptions that were confidently wrong.
+  </p>
+  <p>
+    Instead of guessing at the audio, I put a debug layer in front of it that logged what the
+    recogniser actually heard next to the command it was supposed to trigger. Testing became data
+    collection: every mis-hear went into a mapping table, so a command answers to the things people
+    really say, not just the word in the spec. It is a lookup table built from observed failures and
+    I would not call it elegant — but with a fixed vocabulary it turns an open-ended speech problem
+    into a closed one, and it is the reason the app survived contact with voices that were not ours.
+  </p>
+  <p>
+    The second one I did not solve, and I had no excuse for it. We had wanted Whisper for the
+    open-ended questions, and Whisper needs the network. On the day, the venue WiFi collapsed and
+    the voice path failed in front of the judges. It worked on the second attempt and nothing was
+    lost — but a month earlier I had lost a demo of
+    <a href="visual-eyes.html">Visual Eyes</a> to an API key that would not connect, and I had
+    already told myself the lesson. Knowing it did not change what I built.
+  </p>
+  <p>
+    So the rule now is a build rule, not a resolution: before a demo, everything on the critical
+    path runs locally or it does not go in the script, however much better the remote version is.
+  </p>
+
+  <h2>What I'd do differently</h2>
+  <p>
+    Look for prior art on day one. We found the competing apps late enough that the finding only
+    changed how we pitched — had we known at the start, it would have changed what we built.
+    Searching for the reasons your own idea is unoriginal is uncomfortable, and it turned out to be
+    the highest-leverage hour of the whole hackathon.
+  </p>
+
+  <footer>
+    Team project. The repository is private — happy to walk through the code on request.
+    <a href="mailto:minchia.huang.dev@gmail.com">minchia.huang.dev@gmail.com</a>
+  </footer>
+
+</div>
+</body>
+</html>
