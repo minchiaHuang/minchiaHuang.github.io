@@ -13,157 +13,168 @@
 <meta property="og:url" content="https://minchiahuang.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
+<link rel="preload" href="assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-mono-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="top">
-    <div>Tommy Huang</div>
-    <div>Sydney / AEST</div>
-    <div>Open to work</div>
-  </div>
+  <nav class="nav">
+    <a class="brand" href="/">TOMMY.</a>
+    <span class="links">
+      <a href="#work">Work</a>
+      <a href="#build">Capabilities</a>
+      <a href="#how">How I work</a>
+      <a href="TommyHuang_Resume.pdf">Résumé</a>
+    </span>
+    <a class="btn" href="mailto:minchia.huang.dev@gmail.com">Email</a>
+  </nav>
 
-  <header>
-    <h1>Tommy Huang</h1>
+  <header class="hero">
+    <div class="status">Sydney / AEST — Open to work</div>
+    <h1>Built to be<br>understood.</h1>
+    <p class="lede">
+      iOS and full-stack, from Sydney. Master of IT at UTS, graduating July 2027.
+      I came to software from film, and it shows in how I build.
+    </p>
+    <a class="btn solid" href="#work">See the work ↓</a>
+  </header>
 
-    <div class="meta" style="margin-bottom:20px">
-      <div>/ SOFTWARE ENGINEER — iOS &amp; FULL STACK</div>
-      <div>/ MASTER OF IT, UTS — GRADUATING JULY 2027</div>
+  <section class="band" id="work">
+    <p class="lbl">// Selected work — 04 entries</p>
+    <div class="sechead">
+      <h2>Featured Projects</h2>
+      <p>Four projects, each shipped under a deadline with other people in the room.</p>
     </div>
 
-    <div class="intro">
-      <p>
-        I came to software from film. I studied screen production at Griffith, and I am now
-        finishing a Master of IT at UTS in Sydney.
-      </p>
-      <p>
-        The film training turned out to be useful in a way I did not expect: most of my projects
-        live or die on whether a stranger understands them in ninety seconds. I build mostly iOS
-        and full-stack, and I do my best work under a deadline with other people in the room.
-      </p>
-    </div>
+    <div class="cards">
+      <a class="card" href="cookpilot.html">
+        <span class="shot phones">
+          <img src="assets/cookpilot-home.png" alt="CookPilot home screen">
+          <img src="assets/cookpilot-ingredients.png" alt="Ingredients identified from a fridge photo">
+          <img src="assets/cookpilot-recipes.png" alt="Recipes ranked by what you already have">
+          <img src="assets/cookpilot-cooking.png" alt="Hands-free step-by-step cooking view">
+        </span>
+        <span class="k">iOS · 1st place · ICON x Lyra 2026</span>
+        <span class="t">CookPilot</span>
+        <p>
+          Look at your fridge through Ray-Ban Meta glasses and it tells you what you can
+          actually cook tonight, read into your ear step by step.
+        </p>
+      </a>
 
-    <nav class="keys">
+      <a class="card" href="visual-eyes.html">
+        <span class="shot fill">
+          <img src="assets/ve-gallery.jpg" alt="The walkable 3D gallery with AI-generated images">
+        </span>
+        <span class="k">visionOS · Apple Foundation Program 2026</span>
+        <span class="t">Visual Eyes</span>
+        <p>
+          Asks who you want to become, then builds a five-room museum of that future
+          and makes you walk through it.
+        </p>
+      </a>
+
+      <a class="card" href="https://github.com/minchiaHuang/LearnGuard">
+        <span class="shot empty">
+          <span>8 of 8 attacks blocked</span>
+          <span><b>Swift</b> <b>SwiftUI</b> <b>Python</b> <b>MCP</b></span>
+        </span>
+        <span class="k">MCP · OpenAI Codex Hackathon</span>
+        <span class="t">LearnGuard</span>
+        <p>
+          A gate that makes a coding assistant earn its permissions. The red-team suite
+          blocks 8 of 8 attacks while letting legitimate actions through.
+        </p>
+      </a>
+
+      <a class="card" href="https://github.com/minchiaHuang/VaxAgent">
+        <span class="shot empty">
+          <span>VCF in, ranked candidates out</span>
+          <span><b>Python</b> <b>FastAPI</b> <b>SQLite</b> <b>Playwright</b></span>
+        </span>
+        <span class="k">FastAPI · HSIL, Harvard T.H. Chan</span>
+        <span class="t">VaxAgent</span>
+        <p>
+          Tumour mutation data in, ranked neoantigen candidates out, with every step
+          traceable back to the file it came from.
+        </p>
+      </a>
+    </div>
+  </section>
+
+  <section class="band" id="build">
+    <p class="lbl">// Capabilities</p>
+    <div class="sechead">
+      <h2>What I can build</h2>
+      <p>Six things I have actually shipped, not a list of tutorials.</p>
+    </div>
+    <div class="grid6">
+      <div class="cell"><h3>iOS apps</h3><p>Swift, SwiftUI, on-device speech recognition</p></div>
+      <div class="cell"><h3>Spatial</h3><p>RealityKit, visionOS, USDZ scene generation</p></div>
+      <div class="cell"><h3>Backends</h3><p>Python, FastAPI, SQLite, streaming progress</p></div>
+      <div class="cell"><h3>Wearables</h3><p>Meta Wearables DAT on Ray-Ban Meta glasses</p></div>
+      <div class="cell"><h3>AI plumbing</h3><p>OpenAI, MCP servers, tool-permission gating</p></div>
+      <div class="cell"><h3>Shipping fast</h3><p>Hackathons, tight deadlines, other people in the room</p></div>
+    </div>
+  </section>
+
+  <section class="band" id="how">
+    <p class="lbl">// How I work</p>
+    <div class="sechead">
+      <h2>From idea to shipped</h2>
+      <p>Learned the hard way, mostly on CookPilot.</p>
+    </div>
+    <div class="step">
+      <em>01</em>
+      <span>
+        Find what is actually defensible. Partway through CookPilot we found that
+        <b>every layer of the idea had already shipped somewhere</b> — eight apps do
+        fridge-photo-to-recipe, and Meta's own assistant reads steps aloud. Deciding what
+        was still ours mattered more than anything we built.
+      </span>
+    </div>
+    <div class="step">
+      <em>02</em>
+      <span>Prototype the risky part first, before anything that is merely fiddly.</span>
+    </div>
+    <div class="step">
+      <em>03</em>
+      <span>
+        Test it on someone with no context. <b>Ninety seconds, no explaining from me.</b>
+        This is the part film school taught me, and it is the part most projects skip.
+      </span>
+    </div>
+    <div class="step">
+      <em>04</em>
+      <span>Ship it, then cut whatever nobody used.</span>
+    </div>
+  </section>
+
+  <section class="aside">
+    <p class="lbl">// Away from the keyboard</p>
+    <p>
+      I climb, swim, run, and get out of the city most weekends. Last winter I cycled from
+      Seoul to Busan — seven hours a day, several days running — which is the closest thing
+      I have found to a hackathon that lasts a week.
+    </p>
+    <p>
+      I am learning to write and think in English rather than translating into it. This site
+      is part of that.
+    </p>
+  </section>
+
+  <section class="aside">
+    <nav class="keys" aria-label="Keyboard shortcuts">
       <a class="keycap" href="https://github.com/minchiaHuang"><span class="k">G</span><span>GitHub</span></a>
       <a class="keycap" href="https://www.linkedin.com/in/min-chia-huang-698a6b184/"><span class="k">L</span><span>LinkedIn</span></a>
       <a class="keycap" href="mailto:minchia.huang.dev@gmail.com"><span class="k">E</span><span>Email</span></a>
       <a class="keycap" href="TommyHuang_Resume.pdf"><span class="k">R</span><span>Résumé PDF</span></a>
       <button class="keycap" type="button"><span class="k">I</span><span>Invert</span></button>
     </nav>
-  </header>
-
-  <h2>Selected work — 04 entries</h2>
-
-  <section class="featured">
-    <div class="phead">
-      <span class="pn">01</span><h3>CookPilot</h3>
-      <span class="award">1st place · ICON x Lyra 2026</span>
-    </div>
-
-    <div class="shots phones">
-      <img src="assets/cookpilot-home.png" alt="CookPilot home screen — take or upload a fridge photo">
-      <img src="assets/cookpilot-ingredients.png" alt="Ingredients identified from the fridge photo">
-      <img src="assets/cookpilot-recipes.png" alt="Recipes ranked by what you already have">
-      <img src="assets/cookpilot-cooking.png" alt="Hands-free step-by-step cooking view">
-      <img src="assets/cookpilot-basket.png" alt="Missing ingredients as a shopping basket">
-      <img src="assets/cookpilot-chat.png" alt="Chat a recipe into existence from a craving">
-    </div>
-
-    <p>
-      An iOS app for Ray-Ban Meta glasses. Look at your fridge, and it tells you what you can
-      actually cook tonight — filtered against allergies you set once, then read into your ear
-      step by step so you never touch the phone with wet hands.
-    </p>
-    <p>
-      Partway through, we found that <strong>every layer of this idea already shipped somewhere</strong>
-      — eight apps do fridge-photo-to-recipe, and Meta's own assistant reads recipe steps aloud.
-      Deciding what was still defensible mattered more than anything we built.
-    </p>
-
-    <div class="stack">
-      <span>Swift</span><span>SwiftUI</span><span>Meta Wearables DAT</span>
-      <span>OpenAI</span><span>SFSpeechRecognizer</span>
-    </div>
-
-    <a class="go" href="cookpilot.html">Read how we got there ↗</a>
   </section>
-
-  <section class="featured">
-    <div class="phead">
-      <span class="pn">02</span><h3>Visual Eyes</h3>
-      <span class="award">Apple Foundation Program · 2026</span>
-    </div>
-
-    <figure>
-      <img src="assets/ve-gallery.jpg" alt="The walkable 3D gallery with five AI-generated images hung on its walls">
-      <figcaption>Five generated images, hung in a museum you walk through</figcaption>
-    </figure>
-
-    <p>
-      Wellness apps ask how you feel and offer you a beach. This one asks who you want to
-      <em>become</em>, then builds a five-room museum of that future — four rooms of its quiet cost,
-      one of its summit — and makes you walk through it while a documentary voice narrates.
-    </p>
-    <p>
-      At the exit it asks one question and gives the decision back to you:
-      <strong>which part of this world genuinely felt like you?</strong>
-    </p>
-
-    <div class="stack">
-      <span>SwiftUI</span><span>RealityKit</span><span>visionOS</span>
-      <span>OpenAI Responses API</span><span>USDZ</span>
-    </div>
-
-    <a class="go" href="visual-eyes.html">Read the case study ↗</a>
-  </section>
-
-  <section class="featured">
-    <div class="phead">
-      <span class="pn">03</span><h3>LearnGuard</h3>
-      <span class="award">OpenAI Codex Hackathon</span>
-    </div>
-    <p>
-      An MCP gate that makes a coding assistant earn its permissions: no proof of understanding
-      from the learner, no workspace actions. The red-team suite blocks 8 of 8 attacks while
-      letting both legitimate actions through.
-    </p>
-    <div class="stack">
-      <span>Swift</span><span>SwiftUI</span><span>Python</span><span>MCP</span>
-    </div>
-    <a class="go" href="https://github.com/minchiaHuang/LearnGuard">Visit repo →</a>
-  </section>
-
-  <section class="featured">
-    <div class="phead">
-      <span class="pn">04</span><h3>VaxAgent</h3>
-      <span class="award">HSIL Hackathon · Harvard T.H. Chan</span>
-    </div>
-    <p>
-      A research copilot for veterinary oncology: tumour mutation data in, ranked neoantigen
-      candidates out, with every step traceable back to the file it came from. A FastAPI backend
-      does the VCF parsing, binding and immunogenicity filtering, and ranking, and streams progress
-      to the browser as it goes.
-    </p>
-    <div class="stack">
-      <span>Python</span><span>FastAPI</span><span>SQLite</span><span>Playwright</span>
-    </div>
-    <a class="go" href="https://github.com/minchiaHuang/VaxAgent">Visit repo →</a>
-  </section>
-
-  <h2>Away from the keyboard</h2>
-  <div class="aside">
-    <p>
-      I climb, swim, run, and get out of the city most weekends. Last winter I cycled from Seoul to
-      Busan — seven hours a day, several days running — which is the closest thing I have found to
-      a hackathon that lasts a week.
-    </p>
-    <p>
-      I am learning to write and think in English rather than translating into it. This site is
-      part of that.
-    </p>
-  </div>
 
   <footer>
     I'm looking for a software engineering internship or graduate role in Sydney.
