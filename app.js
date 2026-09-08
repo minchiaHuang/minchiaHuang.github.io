@@ -3,7 +3,7 @@
   var go = {
     h: '/',
     g: 'https://github.com/minchiaHuang',
-    l: 'https://www.linkedin.com/in/min-chia-huang-698a6b184/',
+    l: 'https://www.linkedin.com/in/minchiahuang/',
     e: 'mailto:minchia.huang.dev@gmail.com',
     r: 'TommyHuang_Resume.pdf'
   };
