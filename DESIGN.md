@@ -21,16 +21,17 @@ Hard constraints (unchanged from the previous direction):
 
 ## 2. Colour
 
-| Token | Light | Dark (full inversion) | Use |
+Exactly the Index palette: three colours, no greys.
+
+| Token | Default | INVERT | Use |
 |---|---|---|---|
 | `--paper` | `#ffffff` | `#000000` | Page background |
-| `--ink` | `#000000` | `#ffffff` | Text, rules, borders, plate fill |
-| `--mute` | `#555555` | `#b0b0b0` | Secondary text |
-| `--soft` | `#d6d6d6` | `#333333` | Quiet dividers inside components |
+| `--ink` | `#000000` | `#ffffff` | All text, rules, borders, plate fill |
 | `--mark` | `#ffd600` | `#ffd600` | Status dot only |
 
-Dark mode is a straight swap of `--paper` and `--ink`. Plates use `background: var(--ink); color: var(--paper)`,
-so they invert automatically.
+The page is always white by default, whatever the system setting. Dark exists only through
+INVERT (`I`), which swaps `--paper` and `--ink`. Plates use `background: var(--ink); color: var(--paper)`,
+so they invert automatically. Hierarchy comes from size, weight and case, not from grey text.
 
 `--mark` must never carry text: on white it fails contrast.
 
